@@ -1,4 +1,4 @@
-# Force Fields Production
+# Representing local protein environments with machine learning force fields
 
 Predicting NMR chemical shifts and acid dissociation constant (pKa) for titrable groups from protein structure using learned atomic **descriptors** (MACE, ORB, AIMNet2, LoCO‑HD) and a lightweight neural network classifier/regressor.
 
