@@ -1,0 +1,48 @@
+
+mode: "experiments" # experiments to train else descriptor to generate descriptors
+
+descriptor:
+  name: "MaceDescriptor"
+  generate_descriptors_params:
+    data_folder: "./data/af-bmrb-h-v3" 
+    rmax: 5.0
+    num_workers: 20
+    model_name: "large"
+    num_layers: -1
+    invariants_only: True
+    filter_exisiting_files: False
+
+
+experiments: # as long as the experiments have different name (i.e. experiment1, experiment2, etc) they will run one after the other
+  experiment1:
+    wandb_key: ""  #TODO fill in your key
+    wandb_params:
+      project: "dsf"    #TODO 
+      name: "sdf"    #TODO 
+      mode: "disabled" # disabled to not log to wandb
+    dataset_params:
+      data_path: "data/descriptors_dataset/mace"
+      atoms: ["CD"] # for pka: ["N", "CA", "C", "H", "HA", "CB"]
+      target: "cs" # "cs" or "pka" or "name" or "secondary_structure"
+      pka_residue: "GLU" # if you don't predict pka it doesn't matter
+    model_class: "ImprovedGNN"
+    model_params:
+      dim: 256 # 128 for pka
+      num_layers: 5 # 10 for pka
+      dropout: 0.3
+    trainer_params:
+      checkpoint_name: "" #TODO
+      lr: 1.0e-3 # 1.0e-4 for pka
+      batch_size: 500 # 256 for pka
+      num_epochs: 2000 # 1200 for pka
+      checkpoints_path: "models/checkpoints"
+      device: "cuda:0"
+      loss_func_name: "L1Loss" # "MSELoss" or "L1Loss" or "CrossEntropyLoss"
+      ema_decay: 0.999
+      lr_scheduler_type: "StepLR"
+      step_size: 10
+      gamma: 0.5
+      total_iters: 7500
+      clip_value: 5.0
+      test_every: 1000
+  

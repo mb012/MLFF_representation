@@ -1,0 +1,49 @@
+mode: "descriptor"
+
+
+descriptor:
+  name: "LocoHDDescriptor"
+  init_params:
+    primitive_typing: "descriptors/locohd_primitive_typing/all_atom_with_centroid.config.json"
+    max_threshold: 10.0
+    min_threshold: 0.0
+  generate_descriptors_params:
+    data_folder: "./data/af-bmrb-h-v3" 
+    rmax: 5.0
+    num_workers: 20
+    model_name: ""
+    filter_exisiting_files: False
+
+
+experiments: # as long as the experiments have different name (i.e. experiment1, experiment2, etc) they will run one after the other
+  experiment1:
+    wandb_key: ""  #TODO fill in your key
+    wandb_params:
+      project: ""    #TODO 
+      name: ""    #TODO 
+      mode: "online"
+    dataset_params:
+      data_path: "data/descriptors_dataset/mace_invariant"
+      atoms: ["CA"] 
+      target: "cs" # "cs" or "pka" or "name" or "secondary_structure"
+      pka_residue: "E" # if you don't predict pka it doesn't matter
+    model_class: "ImprovedGNN"
+    model_params:
+      dim: 256
+      num_layers: 5
+      dropout: 0.3
+    trainer_params:
+      checkpoint_name: "" #TODO
+      lr: 1.0e-3
+      batch_size: 500
+      num_epochs: 2000
+      checkpoints_path: "models/checkpoints"
+      device: "cuda:0"
+      loss_func_name: "L1Loss" # "MSELoss" or "L1Loss" or "CrossEntropyLoss"
+      ema_decay: 0.999
+      lr_scheduler_type: "StepLR"
+      step_size: 10
+      gamma: 0.5
+      total_iters: 7500
+      clip_value: 5.0
+      test_every: 1000

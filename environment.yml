@@ -1,0 +1,42 @@
+name: forcefields
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - salilab
+dependencies:
+  - python
+  - pip
+  # Core scientific stack
+  - numpy
+  - scipy
+  - pandas
+  - numba
+  - scikit-learn
+  - umap-learn
+  - tqdm
+  # Plotting
+  - matplotlib
+  - seaborn
+  # YAML + bio/chem tools
+  - pyyaml
+  - ase
+  - biopython
+  - dssp
+  # PyTorch (GPU build) — remove pytorch-cuda if you want CPU-only
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda
+  # Experiment tracking
+  - wandb
+  - pip:
+      # Geometry/ML packages typically distributed via pip wheels
+      - torch-geometric
+      - e3nn
+      - mace-torch
+      - aimnet2calc
+      - orb-models
+      - loco-hd
+      # pypka setup (optional)
+      # - pypka
