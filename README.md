@@ -2,7 +2,7 @@
 
 Predicting NMR chemical shifts and acid dissociation constant (pKa) for titrable groups from protein structure using learned atomic **descriptors** (MACE, ORB, AIMNet2, LoCO‑HD) and a lightweight neural network classifier/regressor.
 
-> **Reference paper:** [_Representing local protein environments with atomistic foundation models_](https://arxiv.org/abs/2505.23354)
+> **Reference paper:** [_Representing local protein environments with machine learning force fields_](https://arxiv.org/abs/2505.23354)
 >
 > **Authors:** Meital Bojan, Sanketh Vedula, Advaith Maddipatla, Nadav Bojan Sellam, Federico Napoli, Paul Schanda, Alex M. Bronstein.
 >
@@ -41,9 +41,18 @@ force_fields-production/
 
 ---
 
-## 3) Usage overview
+
+## 3) Data & models
+
+- **Download**: Weights can be found in following [Dropbox link](https://www.dropbox.com/scl/fi/oo97sg240xfjsmyp3t40o/force_fields_data.zip?rlkey=caxh7qjkxm33jzvk926pxykxi&st=j5ai5cfc&dl=0)
+- **Place data under**: `./data/`  
+
+---
+
+## 4) Usage overview
 
 ### A) Generate descriptors
+Set the "af-bmrb-h-v3" and "target_fixed" from the Dropbox link under the data folder.
 Run the descriptor generation according to the chosen configuration file with mode="descriptor":
 ```bash
 python main.py --config [config_file]
@@ -90,22 +99,15 @@ python pka_predict.py \
 
 ---
 
-## 4) Data & models
-
-- **Download**: Weights can be found in following [Dropbox link](https://www.dropbox.com/scl/fi/u6evti6zclejaymis63zs/force_fields_data.zip?rlkey=ybzhn941be3bji5zww4mjkebs&st=e2dul9aa&dl=0)
-- **Place data under**: `./data/`  
-
----
-
 ## 5) Citation
 
 If you use this repository, please cite the following paper:
 
 ```bibtex
-@misc{bojan2025representinglocalproteinenvironments,
-      title={Representing local protein environments with atomistic foundation models}, 
+@misc{bojan2026representinglocalproteinenvironments,
+      title={Representing local protein environments with machine learning force fields}, 
       author={Meital Bojan and Sanketh Vedula and Advaith Maddipatla and Nadav Bojan Sellam and Federico Napoli and Paul Schanda and Alex M. Bronstein},
-      year={2025},
+      year={2026},
       eprint={2505.23354},
       archivePrefix={arXiv},
       primaryClass={q-bio.BM},
